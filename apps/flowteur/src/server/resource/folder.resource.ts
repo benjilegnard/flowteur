@@ -5,7 +5,6 @@
  * /api/folder/{subpath}
  */
 import * as express from 'express';
-import * as directoryTree from 'directory-tree';
 
 export class FolderResource {
   constructor(router: express.Router) {
@@ -16,7 +15,6 @@ export class FolderResource {
           firstName: 'The',
           lastName: 'Burge',
         };
-        console.log(directoryTree());
         response.send(testData);
       },
     );
