@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { MockComponent } from 'ng-mocks';
 import { configureTestSuite } from 'ng-bullet';
 
@@ -11,17 +11,17 @@ describe('AppComponent', () => {
       declarations: [AppComponent, MockComponent(HeaderComponent)]
     });
   });
-  it('should create the app', async(() => {
+  it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'app'`, async(() => {
+  it(`should have as title 'app'`, waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('flowteur');
   }));
-  it('should render welcomme message in a h2 tag', async(() => {
+  it('should render welcomme message in a h2 tag', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

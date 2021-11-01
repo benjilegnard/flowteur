@@ -36,7 +36,8 @@ const appRoutes: Routes = [
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    RouterModule.forRoot(appRoutes, { enableTracing: true, initialNavigation: 'enabled' } // <-- debugging purposes only
+    RouterModule.forRoot(appRoutes, { enableTracing: true, initialNavigation: 'enabled', relativeLinkResolution: 'legacy' } // <-- debugging purposes only
+ // <-- debugging purposes only
 ),
     // other imports here
     ClarityModule,

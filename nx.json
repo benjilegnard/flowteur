@@ -5,7 +5,8 @@
     "package.json": "*",
     "tsconfig.json": "*",
     "tslint.json": "*",
-    "nx.json": "*"
+    "nx.json": "*",
+    ".eslintrc.json": "*"
   },
   "projects": {
     "flowteur": {
@@ -51,5 +52,18 @@
   },
   "affected": {
     "defaultBase": "master"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "flowteur",
+  "generators": {
+    "@schematics/angular:component": {
+      "prefix": "flw",
+      "style": "css"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "flw"
+    }
   }
 }
