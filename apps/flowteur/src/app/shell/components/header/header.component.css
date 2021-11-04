@@ -5,6 +5,7 @@
   color: var(--color-white);
   display: flex;
   position: fixed;
+  z-index: 2;
 }
 nav {
   display: flex;
@@ -20,4 +21,7 @@ h1 {
 h1 {
   font-size: 1.5em;
   line-height: 1.3em;
+}
+ul li {
+  list-style-type: none;
 }

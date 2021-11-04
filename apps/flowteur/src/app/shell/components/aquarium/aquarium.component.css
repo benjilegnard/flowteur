@@ -2,4 +2,5 @@
 .aquarium {
   width: 100%;
   height: 56.25vw;
+  filter: url('#fluid');
 }

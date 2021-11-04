@@ -1,7 +1,7 @@
-import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { v4 } from 'uuid';
 
-const MAX_BUBBLES = 42;
+const MAX_BUBBLES = 24;
 const WIDTH = 160;
 const HEIGHT = 90;
 /**
@@ -18,6 +18,8 @@ export interface Particle {
   x: number;
   y: number;
   r: number;
+  d: number;
+  f: string;
   v?: Velocity;
 }
 /**
@@ -28,52 +30,55 @@ export interface Particle {
   selector: 'flw-aquarium',
   templateUrl: './aquarium.component.html',
   styleUrls: ['./aquarium.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AquariumComponent implements OnInit {
   public circles: Particle[] = [];
 
-  public bubbles: Particle[] = [];
   constructor(private zone: NgZone, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
+    for (let i = 0; i < MAX_BUBBLES; i++) {
+      this.circles.push(this.generateBubble());
+    }
     // start frame
     this.zone.runOutsideAngular(() => {
       requestAnimationFrame(this.tick);
     });
-    for (let i = 0; i < MAX_BUBBLES; i++) {
-      this.circles.push(this.generateBubble());
-    }
   }
 
-  public tick = (i) =>  {
-    // console.log(i);
+  public tick = (i: number) =>  {
     this.circles.filter(() => true).forEach(particle => {
-      particle.x += particle.v.dx;
-      particle.y += particle.v.dy
+      // small horizontal deviation
+      particle.x = particle.x + Math.sin(i + particle.d*2) * .1;
+      // vertical movement
+      particle.y += particle.v.dy;
+      // reverse direction when out of bounds
+      if (particle.y <=  0|| particle.y >= HEIGHT) {
+        particle.v.dy = -particle.v.dy;
+      }
     });
-    /*
     this.zone.run(()=>{
       this.changeDetector.detectChanges();
     });
-    */
     requestAnimationFrame(this.tick);
   }
 
   public generateBubble(): Particle {
     return {
-      x: parseInt('' + Math.random() * WIDTH),
-      y: parseInt('' + Math.random() * HEIGHT),
-      r: 10,
+      x: Math.floor(Math.random() * WIDTH),
+      y: Math.floor(Math.random() * HEIGHT - 10) + 5,
+      r: Math.floor(2 + Math.random() * 8),
       v: {
         dx: Math.random() * 2 - 1,
         dy: Math.random() * 2 - 1,
       },
+      d: Math.random(),
+      f: Math.random() > 0.5 ? "#00003f": "white",
       id: v4(),
     };
   }
-  public generateCircle(x, y): Particle {
-    return;
-  }
+
   public trackByUUID(item: Particle){
     return item.id;
   }

@@ -35,8 +35,8 @@
         *ngFor="let circle of circles"
         [attr.cx]="circle.x"
         [attr.cy]="circle.y"
-        [attr.r]="10"
-        fill="#00003f"
+        [attr.r]="circle.r"
+        [attr.fill]="'#00003f'"
         stroke="none"
     >
     </circle>
