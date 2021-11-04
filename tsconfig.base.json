@@ -15,9 +15,9 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@flowteur/anchor": ["libs/anchor/src/index.ts"],
+      "@flowteur/api-model": ["libs/api-model/src/index.ts"],
       "@flowteur/medias-page": ["libs/medias-page/src/index.ts"],
-      "@flowteur/video-page": ["libs/video-page/src/index.ts"],
-      "@flowteur/api-model": ["libs/api-model/src/index.ts"]
+      "@flowteur/video-page": ["libs/video-page/src/index.ts"]
     },
     "rootDir": "."
   },

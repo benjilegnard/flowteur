@@ -8,35 +8,6 @@
     "nx.json": "*",
     ".eslintrc.json": "*"
   },
-  "projects": {
-    "flowteur": {
-      "tags": []
-    },
-    "flowteur-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "flowteur"
-      ]
-    },
-    "media-api": {
-      "tags": []
-    },
-    "anchor": {
-      "tags": []
-    },
-    "medias-page": {
-      "tags": []
-    },
-    "video-page": {
-      "tags": []
-    },
-    "api-model": {
-      "tags": []
-    },
-    "flowteur-ssr": {
-      "tags": []
-    }
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -65,5 +36,13 @@
     "@schematics/angular:directive": {
       "prefix": "flw"
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

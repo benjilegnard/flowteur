@@ -2,7 +2,7 @@
 // runs a rest api, and angular universal rendering.
 //
 // Angular requires Zone.js
-// import 'zone.js/dist/zone-node';
+// import 'zone.js/node';
 
 // import { ngExpressEngine } from '@nguniversal/express-engine';
 
