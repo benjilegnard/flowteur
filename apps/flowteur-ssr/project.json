@@ -1,0 +1,61 @@
+{
+  "name": "flowteur-ssr",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/flowteur-ssr/src",
+  "projectType": "application",
+  "prefix": "flowteur-ssr",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "options": {
+        "outputPath": "dist/apps/flowteur-ssr",
+        "main": "apps/flowteur-ssr/src/main.ts",
+        "tsConfig": "apps/flowteur-ssr/tsconfig.app.json",
+        "assets": ["apps/flowteur-ssr/src/assets"],
+        "buildLibsFromSource": true,
+        "target": "node",
+        "compiler": "tsc"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/flowteur-ssr/src/environments/environment.ts",
+              "with": "apps/flowteur-ssr/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@nx/node:node",
+      "options": {
+        "buildTarget": "flowteur-ssr:build"
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "apps/flowteur-ssr/tsconfig.app.json",
+          "apps/flowteur-ssr/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**", "!apps/flowteur-ssr/**/*"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "apps/flowteur-ssr/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/apps/flowteur-ssr"]
+    }
+  },
+  "tags": []
+}

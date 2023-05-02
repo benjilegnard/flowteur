@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { readFirst } from '@nrwl/angular/testing';
+import { readFirst } from '@nx/angular/testing';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule, Store } from '@ngrx/store';
 
-import { NxModule } from '@nrwl/angular';
+import { NxModule } from '@nx/angular';
 
 import { AppEffects } from './app.effects';
 import { AppFacade } from './app.facade';
@@ -26,7 +26,7 @@ describe('AppFacade', () => {
   beforeEach(() => {
     createApp = (id: string, name = ''): Entity => ({
       id,
-      name: name || `name-${id}`
+      name: name || `name-${id}`,
     });
   });
 
@@ -35,9 +35,9 @@ describe('AppFacade', () => {
       @NgModule({
         imports: [
           StoreModule.forFeature('app', reducer, { initialState }),
-          EffectsModule.forFeature([AppEffects])
+          EffectsModule.forFeature([AppEffects]),
         ],
-        providers: [AppFacade]
+        providers: [AppFacade],
       })
       class CustomFeatureModule {}
 
@@ -46,8 +46,8 @@ describe('AppFacade', () => {
           NxModule.forRoot(),
           StoreModule.forRoot({}),
           EffectsModule.forRoot([]),
-          CustomFeatureModule
-        ]
+          CustomFeatureModule,
+        ],
       })
       class RootModule {}
       TestBed.configureTestingModule({ imports: [RootModule] });
@@ -59,7 +59,7 @@ describe('AppFacade', () => {
     /**
      * The initially generated facade::loadAll() returns empty array
      */
-    it('loadAll() should return empty list with loaded == true', async done => {
+    it('loadAll() should return empty list with loaded == true', async (done) => {
       try {
         let list = await readFirst(facade.allApp$);
         let isLoaded = await readFirst(facade.loaded$);
@@ -84,7 +84,7 @@ describe('AppFacade', () => {
     /**
      * Use `AppLoaded` to manually submit list for state management
      */
-    it('allApp$ should return the loaded list; and loaded flag == true', async done => {
+    it('allApp$ should return the loaded list; and loaded flag == true', async (done) => {
       try {
         let list = await readFirst(facade.allApp$);
         let isLoaded = await readFirst(facade.loaded$);

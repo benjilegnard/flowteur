@@ -1,0 +1,29 @@
+{
+  "name": "anchor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/anchor/src",
+  "prefix": "flowteur",
+  "targets": {
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "libs/anchor/tsconfig.lib.json",
+          "libs/anchor/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**", "!libs/anchor/**/*"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/anchor/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/anchor"]
+    }
+  },
+  "generators": {},
+  "tags": []
+}

@@ -1,7 +1,8 @@
-module.exports = {
+/* eslint-disable */
+export default {
   preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/apps/flowteur-ssr',
-  globals: { 'ts-jest': { tsconfig: '<rootDir>/tsconfig.spec.json' } },
+  globals: {},
   displayName: 'flowteur-ssr',
   testEnvironment: 'node',
 };

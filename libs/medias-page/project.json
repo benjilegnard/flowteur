@@ -1,0 +1,29 @@
+{
+  "name": "medias-page",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/medias-page/src",
+  "prefix": "flowteur",
+  "targets": {
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "libs/medias-page/tsconfig.lib.json",
+          "libs/medias-page/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**", "!libs/medias-page/**/*"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/medias-page/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/medias-page"]
+    }
+  },
+  "generators": {},
+  "tags": []
+}

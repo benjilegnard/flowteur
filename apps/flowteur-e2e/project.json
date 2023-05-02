@@ -1,0 +1,28 @@
+{
+  "name": "flowteur-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@angular-devkit/build-angular:protractor",
+      "options": {
+        "protractorConfig": "apps/flowteur-e2e/protractor.conf.js",
+        "devServerTarget": "flowteur:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "flowteur:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": "apps/flowteur-e2e/tsconfig.json",
+        "exclude": ["**/node_modules/**"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["flowteur"]
+}

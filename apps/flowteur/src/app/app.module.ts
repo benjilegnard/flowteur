@@ -11,11 +11,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { StoreRouterConnectingModule, DefaultRouterStateSerializer } from '@ngrx/router-store';
+import {
+  StoreRouterConnectingModule,
+  FullRouterStateSerializer,
+} from '@ngrx/router-store';
 import * as fromApp from './+state/app.reducer';
 import { AppEffects } from './+state/app.effects';
 import { AppFacade } from './+state/app.facade';
-import { NxModule } from '@nrwl/angular';
+import { NxModule } from '@nx/angular';
 
 const appRoutes: Routes = [
   // { path: 'crisis-center', component: CrisisListComponent },
@@ -36,30 +39,37 @@ const appRoutes: Routes = [
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    RouterModule.forRoot(appRoutes, { enableTracing: true, initialNavigation: 'enabled', relativeLinkResolution: 'legacy' } // <-- debugging purposes only
- // <-- debugging purposes only
-),
+    RouterModule.forRoot(
+      appRoutes,
+      {
+    enableTracing: true,
+    initialNavigation: 'enabledBlocking'
+}, // <-- debugging purposes only
+      // <-- debugging purposes only
+    ),
     // other imports here
     ClarityModule,
     BrowserAnimationsModule,
     ShellModule,
     NxModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreRouterConnectingModule.forRoot({ serializer: DefaultRouterStateSerializer }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: FullRouterStateSerializer,
+    }),
     StoreModule.forRoot(
       {},
       {
         metaReducers: !environment.production ? [] : [],
         runtimeChecks: {
           strictActionImmutability: true,
-          strictStateImmutability: true
-        }
-      }
+          strictStateImmutability: true,
+        },
+      },
     ),
     EffectsModule.forRoot([AppEffects]),
-    StoreModule.forFeature(fromApp.APP_FEATURE_KEY, fromApp.reducer)
+    StoreModule.forFeature(fromApp.APP_FEATURE_KEY, fromApp.reducer),
   ],
   providers: [AppFacade],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

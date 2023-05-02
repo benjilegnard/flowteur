@@ -1,0 +1,29 @@
+{
+  "name": "video-page",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/video-page/src",
+  "prefix": "flowteur",
+  "targets": {
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "libs/video-page/tsconfig.lib.json",
+          "libs/video-page/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**", "!libs/video-page/**/*"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/video-page/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/video-page"]
+    }
+  },
+  "generators": {},
+  "tags": []
+}

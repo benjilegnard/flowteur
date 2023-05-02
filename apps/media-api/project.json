@@ -1,0 +1,61 @@
+{
+  "name": "media-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/media-api/src",
+  "projectType": "application",
+  "prefix": "media-api",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "options": {
+        "outputPath": "dist/apps/media-api",
+        "main": "apps/media-api/src/main.ts",
+        "tsConfig": "apps/media-api/tsconfig.app.json",
+        "assets": ["apps/media-api/src/assets"],
+        "buildLibsFromSource": true,
+        "target": "node",
+        "compiler": "tsc"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/media-api/src/environments/environment.ts",
+              "with": "apps/media-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@nx/node:node",
+      "options": {
+        "buildTarget": "media-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "apps/media-api/tsconfig.app.json",
+          "apps/media-api/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**", "!apps/media-api/**/*"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "apps/media-api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/apps/media-api"]
+    }
+  },
+  "tags": []
+}

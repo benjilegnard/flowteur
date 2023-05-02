@@ -1,0 +1,28 @@
+{
+  "name": "api-model",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api-model/src",
+  "projectType": "library",
+  "generators": {},
+  "targets": {
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "libs/api-model/tsconfig.lib.json",
+          "libs/api-model/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**", "!libs/api-model/**/*"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/api-model/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/api-model"]
+    }
+  },
+  "tags": []
+}

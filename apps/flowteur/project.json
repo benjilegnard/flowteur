@@ -1,0 +1,159 @@
+{
+  "name": "flowteur",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/flowteur/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/flowteur/browser",
+        "index": "apps/flowteur/src/index.html",
+        "main": "apps/flowteur/src/main.ts",
+        "tsConfig": "apps/flowteur/tsconfig.app.json",
+        "polyfills": "apps/flowteur/src/polyfills.ts",
+        "assets": ["apps/flowteur/src/assets", "apps/flowteur/src/favicon.ico"],
+        "styles": [
+          "node_modules/@clr/icons/clr-icons.min.css",
+          "node_modules/@clr/ui/clr-ui.min.css",
+          "apps/flowteur/src/styles.css"
+        ],
+        "scripts": [
+          "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
+          "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
+          "node_modules/@clr/icons/clr-icons.min.js"
+        ],
+        "allowedCommonJsDependencies": ["uuid"],
+        "aot": false,
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "aot": true,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/flowteur/src/environments/environment.ts",
+              "with": "apps/flowteur/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": ""
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "flowteur:build",
+        "proxyConfig": "apps/flowteur/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "flowteur:build:production"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "flowteur:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-builders/jest:run",
+      "options": {
+        "tsConfig": "apps/flowteur/tsconfig.spec.json",
+        "karmaConfig": "apps/flowteur/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@angular-devkit/build-angular:tslint",
+      "options": {
+        "tsConfig": [
+          "apps/flowteur/tsconfig.app.json",
+          "apps/flowteur/tsconfig.spec.json"
+        ],
+        "exclude": ["**/node_modules/**"]
+      }
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/flowteur/server",
+        "main": "apps/flowteur/server.ts",
+        "tsConfig": "apps/flowteur/tsconfig.server.json",
+        "sourceMap": true,
+        "optimization": false
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/flowteur/src/environments/environment.ts",
+              "with": "apps/flowteur/src/environments/environment.prod.ts"
+            }
+          ],
+          "sourceMap": false,
+          "optimization": true
+        }
+      },
+      "defaultConfiguration": "",
+      "production": {
+        "outputHashing": "media",
+        "fileReplacements": [
+          {
+            "replace": "apps/flowteur/src/environments/environment.ts",
+            "with": "apps/flowteur/src/environments/environment.prod.ts"
+          }
+        ],
+        "sourceMap": false,
+        "optimization": true
+      }
+    },
+    "serve-ssr": {
+      "executor": "@nguniversal/builders:ssr-dev-server",
+      "options": {
+        "browserTarget": "flowteur:build",
+        "serverTarget": "flowteur:server"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "flowteur:build:production",
+          "serverTarget": "flowteur:server:production"
+        }
+      }
+    },
+    "prerender": {
+      "executor": "@nguniversal/builders:prerender",
+      "options": {
+        "browserTarget": "flowteur:build:production",
+        "serverTarget": "flowteur:server:production",
+        "routes": ["/"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    }
+  },
+  "tags": []
+}

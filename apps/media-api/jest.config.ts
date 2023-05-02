@@ -1,7 +1,8 @@
-module.exports = {
+/* eslint-disable */
+export default {
   preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/apps/media-api',
-  globals: { 'ts-jest': { tsconfig: '<rootDir>/tsconfig.spec.json' } },
+  globals: {},
   displayName: 'media-api',
   testEnvironment: 'node',
 };

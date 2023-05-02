@@ -4,5 +4,6 @@
     "types": ["node", "jest"],
     "emitDecoratorMetadata": true
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"],
+  "exclude": ["jest.config.ts"]
 }
