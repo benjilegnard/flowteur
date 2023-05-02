@@ -1,6 +1,6 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
