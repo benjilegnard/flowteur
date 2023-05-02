@@ -18,7 +18,6 @@ import {
 import * as fromApp from './+state/app.reducer';
 import { AppEffects } from './+state/app.effects';
 import { AppFacade } from './+state/app.facade';
-import { NxModule } from '@nx/angular';
 
 const appRoutes: Routes = [
   // { path: 'crisis-center', component: CrisisListComponent },
@@ -51,7 +50,6 @@ const appRoutes: Routes = [
     ClarityModule,
     BrowserAnimationsModule,
     ShellModule,
-    NxModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({
       serializer: FullRouterStateSerializer,

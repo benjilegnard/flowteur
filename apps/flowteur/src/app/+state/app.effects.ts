@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions } from '@ngrx/effects';
-import { DataPersistence } from '@nx/angular';
+import { fetch } from '@nx/angular';
 
 import { AppPartialState } from './app.reducer';
 import {
@@ -12,7 +12,7 @@ import {
 
 @Injectable()
 export class AppEffects {
-   loadApp$ = createEffect(() => this.dataPersistence.fetch(AppActionTypes.LoadApp, {
+   loadApp$ = createEffect(() => fetch({ 
     run: (action: LoadApp, state: AppPartialState) => {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
       return new AppLoaded([]);
@@ -26,6 +26,5 @@ export class AppEffects {
 
   constructor(
     private actions$: Actions,
-    private dataPersistence: DataPersistence<AppPartialState>,
   ) {}
 }

@@ -6,8 +6,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { provideMockActions } from '@ngrx/effects/testing';
 
-import { NxModule, DataPersistence } from '@nx/angular';
-
 import { hot } from 'jasmine-marbles';
 
 import { AppEffects } from './app.effects';
@@ -20,13 +18,11 @@ describe('AppEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        NxModule.forRoot(),
         StoreModule.forRoot({}),
         EffectsModule.forRoot([]),
       ],
       providers: [
         AppEffects,
-        DataPersistence,
         provideMockActions(() => actions),
       ],
     });
