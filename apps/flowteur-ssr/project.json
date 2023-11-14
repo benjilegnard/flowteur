@@ -33,7 +33,7 @@
       "outputs": ["{options.outputPath}"]
     },
     "serve": {
-      "executor": "@nx/node:node",
+      "executor": "@nx/js:node",
       "options": {
         "buildTarget": "flowteur-ssr:build"
       }
@@ -51,8 +51,7 @@
     "test": {
       "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "apps/flowteur-ssr/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/flowteur-ssr/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/apps/flowteur-ssr"]
     }

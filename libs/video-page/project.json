@@ -18,8 +18,7 @@
     "test": {
       "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "libs/video-page/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/video-page/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/libs/video-page"]
     }

@@ -18,8 +18,7 @@
     "test": {
       "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "libs/medias-page/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/medias-page/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/libs/medias-page"]
     }

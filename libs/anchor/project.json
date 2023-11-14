@@ -18,8 +18,7 @@
     "test": {
       "executor": "@nx/jest:jest",
       "options": {
-        "jestConfig": "libs/anchor/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/anchor/jest.config.ts"
       },
       "outputs": ["{workspaceRoot}/coverage/libs/anchor"]
     }
